@@ -2,17 +2,17 @@ package xyz.hellmouth.jenkinsxml2jobdsl.xml.model.properties.parametersdefinitio
 
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElements;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElements;
 
 public class A {
-	
-	@XmlAttribute(name="class")
-	public String clazz;
 
-	@XmlElements({
-		@XmlElement(name="string", type=String.class)
-	})
-	public List elements;
+    @XmlAttribute(name = "class")
+    public String clazz;
+
+    @XmlElements({
+            @XmlElement(name = "string", type = String.class)
+    })
+    public List elements;
 }

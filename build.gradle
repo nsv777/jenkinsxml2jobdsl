@@ -1,45 +1,49 @@
-apply plugin : 'java'
+apply plugin: 'java'
 
 ext {
-  fileSeparator = System.properties['file.separator']
-  libDirectory = "libs"
-  buildDirectory = "build"
+    fileSeparator = System.properties['file.separator']
+    libDirectory = "libs"
+    buildDirectory = "build"
 }
 repositories {
-  mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-  compile "commons-io:commons-io:2.0.1"
-  compile "commons-cli:commons-cli:1.2"
-  compile "commons-httpclient:commons-httpclient:3.1"
-  compile "org.eclipse.persistence:eclipselink:2.5.0"
+    implementation "commons-io:commons-io:2.17.0"
+    implementation "commons-cli:commons-cli:1.9.0"
+    implementation "commons-httpclient:commons-httpclient:3.1"
+    implementation "org.eclipse.persistence:eclipselink:2.5.0"
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:4.0.0"
+    implementation "com.sun.xml.bind:jaxb-impl:4.0.0"
+
 }
 
-def buildPathName(String ... folders){
-  def path = ""
-  folders.each{ path += it += fileSeparator }
-  path
+def buildPathName(String... folders) {
+    def path = ""
+    folders.each { path += it += fileSeparator }
+    path
 }
 
 jar {
-  from{
-    configurations.runtime.collect{ it.isDirectory() ? it : zipTree(it) }
-  }
-  manifest{
-    attributes 'Main-Class':"xyz.hellmouth.jenkinsxml2jobdsl.Main"
-  }
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    manifest {
+        attributes 'Main-Class': "xyz.hellmouth.jenkinsxml2jobdsl.Main"
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 
-task run(type:JavaExec){
-  main='-jar'
-  args=[buildPathName(buildDirectory,libDirectory) + "jenkinsxml2jobdsl" + ".jar"]
+task run(type: JavaExec) {
+    mainClass = 'xyz.hellmouth.jenkinsxml2jobdsl.Main'
+    args = [buildPathName(buildDirectory, libDirectory) + "jenkinsxml2jobdsl" + ".jar"]
 }
 
 run.dependsOn(jar)
 
-task wrapper(type: Wrapper) {
-   gradleVersion = '3.5' 
+wrapper {
+    gradleVersion = '8.11.1'
 }
 
