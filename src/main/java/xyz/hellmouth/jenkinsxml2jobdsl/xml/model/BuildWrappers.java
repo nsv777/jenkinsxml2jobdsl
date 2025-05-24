@@ -10,6 +10,7 @@ import xyz.hellmouth.jenkinsxml2jobdsl.jobdsl.Buildable;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.wrappers.AnsiColorBuildWrapper;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.wrappers.BuildUserBuildWrapper;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.wrappers.PreBuildCleanup;
+import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.wrappers.SecretBuildWrapper;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.wrappers.TimestamperBuildWrapper;
 
 @XmlRootElement(name = "buildWrappers")
@@ -20,6 +21,7 @@ public class BuildWrappers implements Buildable {
             @XmlElement(name = "hudson.plugins.timestamper.TimestamperBuildWrapper", type = TimestamperBuildWrapper.class),
             @XmlElement(name = "hudson.plugins.ansicolor.AnsiColorBuildWrapper", type = AnsiColorBuildWrapper.class),
             @XmlElement(name = "org.jenkinsci.plugins.builduser.BuildUser", type = BuildUserBuildWrapper.class),
+            @XmlElement(name = "org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper", type = SecretBuildWrapper.class),
     })
     public List<Buildable> elements;
 
