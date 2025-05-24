@@ -22,6 +22,7 @@ public class Properties implements Buildable {
             @XmlElement(name = "hudson.model.ParametersDefinitionProperty", type = ParametersDefinition.class),
             @XmlElement(name = "com.coravy.hudson.plugins.github.GithubProjectProperty", type = GitHubProject.class),
             @XmlElement(name = "org.jenkinsci.plugins.runmemaybe.RunMeMaybeJobProperty", type = RunMeMaybeProperty.class),
+            @XmlElement(name = "hudson.plugins.buildblocker.BuildBlockerProperty", type = BuildBlockerProperty.class),
     })
     public List<Buildable> elements;
 
@@ -29,7 +30,7 @@ public class Properties implements Buildable {
     public void build(Builder builder) {
         if (elements != null) {
             for (Buildable p : elements) {
-                if (p instanceof GitHubProject || p instanceof RunMeMaybeProperty) { // some properties are at the root
+                if (p instanceof GitHubProject || p instanceof RunMeMaybeProperty || p instanceof BuildBlockerProperty) { // some properties are at the root
                                                                                      // level, others are expected to be
                                                                                      // within a properties block
                     p.build(propertiesBlock);

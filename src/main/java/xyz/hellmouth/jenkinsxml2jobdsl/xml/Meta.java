@@ -113,7 +113,8 @@ public class Meta {
 	private static String extractUnsupportedTagName(final String validationEventMessage) {
 		String unsupportedTagIsWithin = validationEventMessage.split(Pattern.quote("\"). "))[0];
 		
-		String unsupportedTag = unsupportedTagIsWithin.split(Pattern.quote(", local:\""))[1];
+		String[] parts = unsupportedTagIsWithin.split(Pattern.quote(", local:\""));
+		String unsupportedTag = parts.length > 1 ? parts[1] : parts[0];
 		unsupportedTag = unsupportedTag.replace(" ", "");
 		
 		return unsupportedTag;
