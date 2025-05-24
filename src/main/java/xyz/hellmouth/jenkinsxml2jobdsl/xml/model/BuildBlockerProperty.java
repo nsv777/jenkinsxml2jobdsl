@@ -17,7 +17,7 @@ public class BuildBlockerProperty implements Buildable {
 
     @Override
     public void build(Builder builder) {
-        builder.create("buildBlockerJobProperty").openClosure();
+        builder.create("buildBlockerProperty").openClosure();
         builder.createMethod("useBuildBlocker").withBooleanParameter(useBuildBlocker).endMethod();
         builder.createMethod("blockLevel").withStringParameter(blockLevel).endMethod();
         builder.createMethod("scanQueueFor").withStringParameter(scanQueueFor).endMethod();
