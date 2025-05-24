@@ -8,9 +8,10 @@ public class StringParameterDefinition implements Buildable{
 	public String name;
 	public String description;
 	public String defaultValue;
+	public boolean trim;
 	
 	@Override
 	public void build(Builder builder) {
-		builder.createMethod("stringParam").withStringParameter(name).withStringParameter(defaultValue).withStringParameter(description).endMethod();
+		builder.createMethod("stringParam").withStringParameter(name).withStringParameter(defaultValue).withStringParameter(description).withBooleanParameter(trim).endMethod();
 	}
 }

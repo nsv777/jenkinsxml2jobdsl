@@ -9,6 +9,7 @@ public class PreBuildCleanup implements Buildable{
 	public boolean deleteDirs;
 	public String cleanupParameter;
 	public String externalDelete;
+	public boolean disableDeferredWipeout;
 	
 	@Override
 	public void build(Builder builder) {
@@ -19,6 +20,7 @@ public class PreBuildCleanup implements Buildable{
 		if (patterns != null){
 			patterns.build(builder);
 		}
+		builder.createMethod("disableDeferredWipeout").withBooleanParameter(disableDeferredWipeout).endMethod();
 		builder.closeClosure();
 	}
 
