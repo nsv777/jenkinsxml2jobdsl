@@ -8,6 +8,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 
 import xyz.hellmouth.jenkinsxml2jobdsl.jobdsl.Buildable;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.wrappers.AnsiColorBuildWrapper;
+import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.wrappers.BuildUserBuildWrapper;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.wrappers.PreBuildCleanup;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.wrappers.TimestamperBuildWrapper;
 
@@ -18,6 +19,7 @@ public class BuildWrappers implements Buildable {
             @XmlElement(name = "hudson.plugins.ws__cleanup.PreBuildCleanup", type = PreBuildCleanup.class),
             @XmlElement(name = "hudson.plugins.timestamper.TimestamperBuildWrapper", type = TimestamperBuildWrapper.class),
             @XmlElement(name = "hudson.plugins.ansicolor.AnsiColorBuildWrapper", type = AnsiColorBuildWrapper.class),
+            @XmlElement(name = "org.jenkinsci.plugins.builduser.BuildUser", type = BuildUserBuildWrapper.class),
     })
     public List<Buildable> elements;
 
