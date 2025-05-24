@@ -1,0 +1,19 @@
+package xyz.hellmouth.jenkinsxml2jobdsl.xml.model.wrappers;
+
+import jakarta.xml.bind.annotation.XmlAttribute;
+
+import xyz.hellmouth.jenkinsxml2jobdsl.jobdsl.Buildable;
+import xyz.hellmouth.jenkinsxml2jobdsl.jobdsl.Builder;
+
+public class AnsiColorBuildWrapper implements Buildable {
+
+    public String colorMapName;
+    
+    @XmlAttribute
+    public String plugin;
+
+    @Override
+    public void build(Builder builder) {
+        builder.createMethod("colorizeOutput").withStringParameter(colorMapName).endMethod();
+    }
+}
