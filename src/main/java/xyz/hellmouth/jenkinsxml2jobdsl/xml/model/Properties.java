@@ -24,6 +24,8 @@ public class Properties implements Buildable {
             @XmlElement(name = "org.jenkinsci.plugins.runmemaybe.RunMeMaybeJobProperty", type = RunMeMaybeProperty.class),
             @XmlElement(name = "hudson.plugins.buildblocker.BuildBlockerProperty", type = BuildBlockerProperty.class),
             @XmlElement(name = "org.jenkinsci.plugins.mavenrepocleaner.MavenRepoCleanerProperty", type = MavenRepoCleanerProperty.class),
+            @XmlElement(name = "com.sonyericsson.rebuild.RebuildSettings", type = RebuildSettingsProperty.class),
+            @XmlElement(name = "com.synopsys.arc.jenkinsci.plugins.jobrestrictions.jobs.JobRestrictionProperty", type = JobRestrictionProperty.class),
     })
     public List<Buildable> elements;
 
@@ -34,7 +36,9 @@ public class Properties implements Buildable {
                 if (p instanceof GitHubProject
                         || p instanceof RunMeMaybeProperty
                         || p instanceof BuildBlockerProperty
-                        || p instanceof MavenRepoCleanerProperty) { // some properties are at the root
+                        || p instanceof MavenRepoCleanerProperty
+                        || p instanceof RebuildSettingsProperty
+                        || p instanceof JobRestrictionProperty) { // some properties are at the root
                                                                                      // level, others are expected to be
                                                                                      // within a properties block
                     p.build(propertiesBlock);
