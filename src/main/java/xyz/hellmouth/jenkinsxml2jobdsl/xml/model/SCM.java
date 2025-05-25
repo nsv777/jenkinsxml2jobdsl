@@ -1,9 +1,11 @@
 package xyz.hellmouth.jenkinsxml2jobdsl.xml.model;
 
 import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 import xyz.hellmouth.jenkinsxml2jobdsl.jobdsl.Buildable;
+import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.scm.MultiSCMs;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.scm.SCMRepositoryBrowser;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.scm.cvs.CVSRepositories;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.scm.git.Branches;
@@ -72,12 +74,16 @@ public class SCM implements Buildable {
     public boolean filterChangelog;
     // End Subversion
 
+    @XmlElement(name = "scms")
+    public MultiSCMs scms;
+
     @Override
     public void build(xyz.hellmouth.jenkinsxml2jobdsl.jobdsl.Builder builder) {
 
         builder.create("scm").openClosure();
-
-        if (clazz.contains("Git")) {
+        if (clazz.equals("org.jenkinsci.plugins.multiplescms.MultiSCM")) {
+            scms.build(builder);
+        } else if (clazz.contains("Git")) {
             git(builder);
         }
 
