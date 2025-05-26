@@ -11,6 +11,7 @@ import xyz.hellmouth.jenkinsxml2jobdsl.jobdsl.Builder;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.publishers.aggregatedtestresults.AggregatedTestResultPublisher;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.publishers.artifactarchiver.ArtifactArchiver;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.publishers.buildtrigger.BuildTrigger;
+import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.publishers.GroovyPostbuildRecorder;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.publishers.ccmpublisher.CCMPublisher;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.publishers.fingerprinter.FingerPrinter;
 import xyz.hellmouth.jenkinsxml2jobdsl.xml.model.publishers.gitpublisher.GitPublisher;
@@ -34,7 +35,8 @@ public class Publishers implements Buildable {
             @XmlElement(name = "hudson.tasks.ArtifactArchiver", type = ArtifactArchiver.class),
             @XmlElement(name = "hudson.tasks.test.AggregatedTestResultPublisher", type = AggregatedTestResultPublisher.class),
             @XmlElement(name = "hudson.plugins.ccm.CcmPublisher", type = CCMPublisher.class),
-            @XmlElement(name = "hudson.plugins.parameterizedtrigger.BuildTrigger", type = ParameterizedBuildTrigger.class)
+            @XmlElement(name = "hudson.plugins.parameterizedtrigger.BuildTrigger", type = ParameterizedBuildTrigger.class),
+            @XmlElement(name = "org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder", type = GroovyPostbuildRecorder.class)
     })
     public List<Buildable> elements;
 

@@ -47,6 +47,7 @@ public class SCM implements Buildable {
     public Branches branches;
     public boolean doGenerateSubmoduleConfigurations;
     public GitExtensions extensions;
+    public String submoduleCfg;
     // End Git
 
     // Begin Mercurial
